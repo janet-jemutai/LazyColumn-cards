@@ -1,10 +1,11 @@
 package com.jemutai.mypolicies
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -18,12 +19,14 @@ import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -36,7 +39,8 @@ val myPolicy = listOf(
         status = "ACTIVE",
         expDate = "34FGF",
         premium = 56009,
-        icon = Icons.Outlined.AddCircle
+        icon = Icons.Outlined.AddCircle,
+
 
     ),
     PolicyCard(
@@ -45,7 +49,9 @@ val myPolicy = listOf(
         status = "ACTIVE",
         expDate = "34FGF",
         premium = 9834,
-        icon = Icons.Rounded.Person
+        icon = Icons.Rounded.Person,
+
+
 
     ),
     PolicyCard(
@@ -54,12 +60,20 @@ val myPolicy = listOf(
         status = "LAPSED",
         expDate = "34FGF",
         premium = 6743,
-        icon = Icons.Rounded.Home
+        icon = Icons.Rounded.Home,
+
 
     ),
 )
 @Composable
 fun MyPolicy() {
+
+    Surface(modifier = Modifier.fillMaxSize(),
+        color = Color.Red,
+        shape = RoundedCornerShape(30.dp)
+    )
+        {
+
 
     Column {
         Text(
@@ -79,6 +93,7 @@ MyPolicyCard(index = index )
         }
     }
 }
+}
 
 @Composable
 fun  MyPolicyCard(index:Int) {
@@ -90,22 +105,33 @@ fun  MyPolicyCard(index:Int) {
     }
 
 
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(16.dp),
+        shape = RoundedCornerShape(20.dp),
+        border = BorderStroke(2.dp, color = Color.White)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.End // Aligns children to the start (left) of the row
+
         ) {
-            // Button with a background color and text inside it
-            Button(
-                onClick = {}, // Empty onClick makes the button not clickable
-                modifier = Modifier.padding(end = 16.dp),
-                // colors = Color.Blue// Set the background color
+
+            Surface (
+                modifier = Modifier.height(70.dp).width(120.dp).padding(16.dp),
+                shape = RoundedCornerShape(50),
+                color = Color.Blue,
+
+
             ) {
-                Text(text = plcy.status, style = MaterialTheme.typography.headlineSmall, color = Color.White) // Text inside the button
+                Text(
+                    text = plcy.status,
+                    style = MaterialTheme.typography.headlineSmall,
+                    color = Color.White
+                ) // Text inside the button
             }
 
 
@@ -125,14 +151,27 @@ fun  MyPolicyCard(index:Int) {
 //            Text(text = plcy.icon, style = MaterialTheme.typography.headlineSmall, color = Color.White)
 //
 //            Spacer(modifier = Modifier.height(8.dp))
-            Text(text = plcy.title, style = MaterialTheme.typography.headlineSmall, color = Color.White)
+            Text(
+                text = plcy.title,
+                style = MaterialTheme.typography.headlineSmall,
+                color = Color.White
+            )
             Spacer(modifier = Modifier.height(8.dp))
-            Text(text = plcy.policyNumber, style = MaterialTheme.typography.headlineSmall, color = Color.White)
+            Text(
+                text = plcy.policyNumber,
+                style = MaterialTheme.typography.headlineSmall,
+                color = Color.White
+            )
             Spacer(modifier = Modifier.height(8.dp))
-            Text(text = plcy.expDate, style = MaterialTheme.typography.headlineSmall, color = Color.White)
+            Text(
+                text = plcy.expDate,
+                style = MaterialTheme.typography.headlineSmall,
+                color = Color.White
+            )
 //
         }
     }
 }
+
 
 
